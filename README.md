@@ -9,4 +9,7 @@ Soon, 5 freelancers posted a proposal; I started negotiating with the guy that a
 
 After testing the result of the project, and doing a first integration of it in the CommonS Platform (see the commons repository), I publish it here with minimal modifications.
 
-Please note that I'm using this package as a Django *application* inside a larger project, where some modules - for example settings.py - are not used.
+**IMPORTANT NOTES**
+
+- I'm using  **dmuc** as a Django *application* inside a larger project, where some modules - for example settings.py - are not used.
+- Previously, I tried to use the existing app **django-conversejs** (https://pypi.python.org/pypi/django-conversejs) but met some difficulty; however, dmuc reuses some ideas and code from django-conversejs
