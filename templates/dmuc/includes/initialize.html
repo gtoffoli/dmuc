@@ -1,0 +1,31 @@
+{% extends 'conversejs/includes/base.html' %}
+{% block conversejs_baseinclude %}
+{% if jid and sid and rid %}
+    <script type="text/javascript">
+        require(['converse'], function (converse) {
+            converse.initialize({
+                allow_contact_requests: {{ CONVERSEJS_ALLOW_CONTACT_REQUESTS }},
+                allow_logout: {{ CONVERSEJS_ALLOW_LOGOUT }},
+                autentication: '{{ CONVERSEJS_AUTHENTICATION }}',
+                auto_list_rooms: true,
+                auto_login: {{ CONVERSEJS_AUTOLOGIN }},
+                auto_subscribe: false,
+                bosh_service_url: '{{ CONVERSEJS_BOSH_SERVICE_URL }}',
+                debug: {{ CONVERSEJS_DEBUG }},
+                hide_muc_server: true,
+                i18n: locales['{{ request.LANGUAGE_CODE }}'],
+                play_sounds: true,
+                show_only_online_users: false,
+                show_controlbox_by_default: {{ CONVERSEJS_SHOW_CONTROLBOX_BY_DEFAULT }},
+                xhr_user_search: {{ CONVERSEJS_XHR_USER_SEARCH }},
+                keepalive: {{ CONVERSEJS_KEEPALIVE }},
+                prebind: {{ CONVERSEJS_PREBIND }},
+                prebind_url: 'http://' + '{{ request.META.HTTP_HOST }}' + '{{ CONVERSEJS_PREBIND_PATH }}',
+                jid: '{{ jid }}',
+                sid: '{{ sid }}',
+                rid: '{{ rid }}',
+            });
+        });
+    </script>
+{% endif %}
+{% endblock %}
