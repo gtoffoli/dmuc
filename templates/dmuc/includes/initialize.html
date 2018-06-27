@@ -2,11 +2,14 @@
 {% block conversejs_baseinclude %}
 {% if jid and sid and rid %}
     <script type="text/javascript">
+/* rimuovere require per versione 3 di conversejs !!! */
+/*      require(['converse'], function (converse) { */
         require(['converse'], function (converse) {
             converse.initialize({
                 allow_contact_requests: {{ CONVERSEJS_ALLOW_CONTACT_REQUESTS }},
                 allow_logout: {{ CONVERSEJS_ALLOW_LOGOUT }},
                 autentication: '{{ CONVERSEJS_AUTHENTICATION }}',
+                // authentication: 'login',
                 auto_list_rooms: true,
                 auto_login: {{ CONVERSEJS_AUTOLOGIN }},
                 auto_subscribe: false,
@@ -25,7 +28,9 @@
                 sid: '{{ sid }}',
                 rid: '{{ rid }}',
             });
+
         });
+/*      }); */
     </script>
 {% endif %}
 {% endblock %}

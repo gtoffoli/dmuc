@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('conversejs', '__first__'),
+        # ('conversejs', '__first__'),
     ]
 
     operations = [
@@ -23,8 +23,8 @@ class Migration(migrations.Migration):
             name='RoomMember',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('room', models.ForeignKey(to='dmuc.Room')),
-                ('xmpp_account', models.ForeignKey(to='conversejs.XMPPAccount')),
+                ('room', models.ForeignKey(on_delete=models.CASCADE, to='dmuc.Room')),
+                ('xmpp_account', models.ForeignKey(on_delete=models.CASCADE, to='conversejs.XMPPAccount')),
             ],
         ),
     ]

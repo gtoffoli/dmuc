@@ -1,6 +1,9 @@
-# from django.conf import settings
-from conversejs.models import XMPPAccount
-from models import RoomMember
+from django.conf import settings
+if settings.HAS_XMPP:
+    from conversejs.models import XMPPAccount
+else:
+    from .models import XMPPAccount
+from .models import RoomMember
 
 def rooms(request):
     user = request.user

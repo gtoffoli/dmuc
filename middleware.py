@@ -1,9 +1,12 @@
 import uuid
 import logging
 
-from conversejs.models import XMPPAccount
+from django.conf import settings
+if settings.HAS_XMPP:
+    from conversejs.models import XMPPAccount
+else:
+    from .models import XMPPAccount
 from django.contrib import messages
-
 from .core import create_user
 
 L = logging.getLogger(__name__)
@@ -43,22 +46,4 @@ class UserXMPPMiddleware(object):
 
         user = request.user
 
-        """
-        if user.is_active and not user.xmpp.first():
-            username = user.username
-            password = str(uuid.uuid4())
-
-            jid = create_user(username, password, user.get_full_name(),
-                              user.email)
-            if jid:
-                XMPPAccount.objects.create(user=user, jid=jid,
-                                           password=password)
-                messages.add_message(request, messages.SUCCESS,
-                                     'Successfully created a XMPP account.')
-            else:
-                messages.add_message(request, messages.WARNING,
-                                     'Failed to create a XMPP account.')
-
-                L.error('Could not create a XMPP account for %s.', user)
-        """
         create_xmpp_account(request, user)
